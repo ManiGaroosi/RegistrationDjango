@@ -1,0 +1,32 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+<style>
+    body{
+        text-align: center;
+        margin: 15rem;
+    }
+    input, button,a{
+        margin-top: 1rem;
+    }
+</style>
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>Registeratiom</h1>
+
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="username">
+    <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" name="email">
+    <div class="row">
+        <div class="col">
+          <input type="password" class="form-control" placeholder="password" aria-label="Name" aria-describedby="basic-addon1" name="password1">
+        </div>
+        <div class="col">
+          <input type="password" class="form-control" placeholder="configure password" aria-label="LastName" aria-describedby="basic-addon1" name="password2">
+        </div>
+  </div>
+  <button type="submit" class="btn">register</button>
+  <a href="../login/" class="btn">i have account</a>
+</form>
+{% endblock %}
+
