@@ -13,12 +13,13 @@ def RigisterPage(request):
         pass1 = request.POST.get('password1')
         pass2 = request.POST.get('password2')
 
-        if pass1 != pass2:
+        if not username or not email :
+            return HttpResponse("Username and email are required")
+        elif pass1 != pass2:
             return HttpResponse("password not match")
         else:
             my_user = User.objects.create_user(username,email,pass1)
             my_user.save()
-            print(username,email,pass1)
 
     return render(request, 'register.html')
 
