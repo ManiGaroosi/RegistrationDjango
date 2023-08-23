@@ -1,7 +1,13 @@
+import random
+import string
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from .models import Token
+
+random_str = ''.join(random.choices(string.ascii_uppercase + string.digits, k=28))
 
 def HomePage(request):
     return render(request, 'home.html')
@@ -19,7 +25,9 @@ def RigisterPage(request):
             return HttpResponse("password not match")
         else:
             my_user = User.objects.create_user(username,email,pass1)
-            my_user.save()
+            this_token = random_str
+            token = Token.objects.create(user=my_user, token=this_token)
+            my_user,token.save()
 
     return render(request, 'register.html')
 
